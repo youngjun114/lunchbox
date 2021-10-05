@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import styled from 'styled-components';
 import Button from '../global/button';
 import { Link } from 'react-router-dom';
@@ -7,23 +7,26 @@ const LoginMain = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const onChangeUsername = (e: React.FocusEvent<HTMLInputElement>) => {
-    setUsername(e.currentTarget.value);
-  };
-
-  const onChangePassword = (e: React.FocusEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
+  const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log(username, password);
   };
 
   return (
     <LoginContainer>
-      <Input type='text' placeholder='Username' onChange={onChangeUsername} />
+      <Input
+        type='text'
+        placeholder='Username'
+        onChange={(e) => setUsername(e.target.value)}
+      />
       <Input
         type='password'
         placeholder='Password'
-        onChange={onChangePassword}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <Button color='rgb(235, 87, 87)'>Log In</Button>
+      <Button color='rgb(235, 87, 87)' type='submit' onClick={handleSubmit}>
+        Log In
+      </Button>
       <Text>
         Don't have an account? <Link to='#'>Sign Up</Link>
       </Text>

@@ -1,18 +1,23 @@
-import React, { memo } from 'react';
+import React, { FormEvent, memo } from 'react';
 import styled from 'styled-components';
 
 type Props = {
-  children: string;
+  children?: HTMLCollection | string;
   color: string;
-};
+  onClick: (e: FormEvent<HTMLButtonElement>) => void;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({ children, color }: Props) => {
-  return <StyledButton color={color}>{children}</StyledButton>;
+const Button = ({ children, color, onClick, ...other }: Props) => {
+  return (
+    <StyledButton color={color} onClick={onClick} {...other}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default memo(Button);
 
-export const StyledButton = styled.button`
+const StyledButton = styled.button`
   padding: 0.75em;
   border: none;
   border-radius: 10px;

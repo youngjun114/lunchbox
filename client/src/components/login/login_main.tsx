@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import Button from '../global/button';
+import { Link } from 'react-router-dom';
 
 const LoginMain = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onChangeUsername = (e: React.FocusEvent<HTMLInputElement>) => {
+    setUsername(e.currentTarget.value);
+  };
+
+  const onChangePassword = (e: React.FocusEvent<HTMLInputElement>) => {
+    setPassword(e.currentTarget.value);
+  };
+
   return (
     <LoginContainer>
-      <Input type='text' placeholder='Username' />
-      <Input type='password' placeholder='Password' />
-      <Button>Log In</Button>
+      <Input type='text' placeholder='Username' onChange={onChangeUsername} />
+      <Input
+        type='password'
+        placeholder='Password'
+        onChange={onChangePassword}
+      />
+      <Button color='rgb(235, 87, 87)'>Log In</Button>
+      <Text>
+        Don't have an account? <Link to='#'>Sign Up</Link>
+      </Text>
     </LoginContainer>
   );
 };
@@ -16,6 +36,7 @@ export default LoginMain;
 const LoginContainer = styled.div`
   display: flex;
   height: 100vh;
+  margin: 0 4em;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -26,16 +47,11 @@ const Input = styled.input`
   padding: 1em;
   border: none;
   border-bottom: 1px solid black;
-  width: 75%;
+  width: 100%;
   color: black;
 `;
 
-const Button = styled.button`
-  padding: 0.5em;
-  background-color: #e99557;
-  border: none;
-  border-radius: 10px;
-  margin-top: 1em;
-  font-size: 2.5rem;
-  color: white;
+const Text = styled.p`
+  color: black;
+  font-size: 1.2rem;
 `;

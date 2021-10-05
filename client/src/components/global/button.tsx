@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 
 type Props = {
-  children: JSX.Element;
+  children: string;
   color: string;
 };
 
@@ -17,4 +17,7 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 10px;
   font-size: 1.6rem;
+  background-color: ${(props) => props.color};
+  color: white;
+  width: 100%;
 `;

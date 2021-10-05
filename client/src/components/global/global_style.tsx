@@ -15,6 +15,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.5;
     height: 100vh;
+    width: 100vw;
   }
 
   h1{
@@ -27,5 +28,10 @@ body {
 
   p{
     color: white;
+  }
+
+  a{
+    text-decoration: none;
+    color: rgb(235, 87, 87);
   }
 `;
